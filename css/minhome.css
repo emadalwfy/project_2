@@ -1,0 +1,89 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(247, 247, 247);
+}
+.navbar{
+
+    background-color: #00ffff;
+    list-style: none;
+    position: fixed;
+    position: relative;
+}
+.navbar ,ul{
+    display: flex;
+    float: right;
+    width: 100%;
+    /* direction: rtl; */
+}
+.navbar ,li{
+   margin-left: 10px;
+   padding: 10px;
+   list-style: none;
+   
+}
+.navbar ,a{
+    text-decoration: none;
+    font-size: 18px;
+    color: blueviolet;
+}
+.navbar ,a:hover{
+  text-decoration: none;
+  font-size: 18px;
+  color: blueviolet;
+}
+/* Style The Dropdown Button */
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-menu{
+  display: none;
+  position: absolute;
+  background-color: #e78383;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+/*  jumbotron style start */
+.jumbotron{
+   background-color: deepskyblue;
+   
+}
+
+/* end style jubmotron  */
+
+.min_posts{
+  background-color: rgb(241, 226, 226);
+  width: 100%;
+  /* min-height: 250px; */
+}
+
+.min_post_single{
+  margin-top: 0px;
+  background-color: rgb(241, 223, 217);
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+}
+.event_post{
+  display: inline-flex;
+}

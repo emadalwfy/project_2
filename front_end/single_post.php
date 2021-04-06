@@ -1,0 +1,119 @@
+<?php
+
+include_once "../conect_db.php";
+
+
+$select_posts_up="SELECT * FROM `posts`  where id='". $_GET['id']  ."' ";
+$result_select_posts_home=mysqli_query($coon,$select_posts_up);
+
+
+$select_pages_up="SELECT * FROM `pages` ";
+$result_select_pages_up=mysqli_query($coon,$select_pages_up);
+
+
+$select_cats_up="SELECT * FROM `cat1`  ";
+$result_select_cats_up=mysqli_query($coon,$select_cats_up);
+
+?>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/minhome.css">
+    <title>home</title>
+</head>
+<body>
+    <!-- nav bar start -->
+    <nav class="navbar navbar-expand-lg   navbar-deepskyblue bg-deepskyblue">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+      </li>
+     
+          <?php while( $row=mysqli_fetch_assoc($result_select_pages_up) ){?>
+            <li class="nav-item">
+        <a class="nav-link" href="<?php  echo  $row['name_page'].'.php' ?>"><?php echo $row['name_page']  ?></a>
+     
+      </li>
+      <?php  }?>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categorice
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+        <?php while( $row=mysqli_fetch_assoc($result_select_cats_up) ){?>
+          <a class="dropdown-item" href="<?php  echo  $row['name_cat'].'.php' ?>"><?php echo $row['name_cat']  ?></a>
+          <!-- <a class="dropdown-item" href="#">Another action</a> -->
+          <?php  }?>
+          <div class="dropdown-divider">
+          </div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <form class="form-inline my-2 my-lg-0"  method="post">
+      <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  name="sub_search">Search</button>
+    </form>
+</nav>  <!-- end nav bar  -->
+
+<!-- jumbotron start -->
+<!-- <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <center>
+    <h1 class="display-6"> WELCOME TO</h1>
+    <p class="lead"> monitor project  central for all new </p>
+          </center>
+  </div>
+</div> -->
+  
+<!-- stsrt posts  -->
+<div class=container>
+    <!-- <div class="row"> -->
+ 
+<?php if($row=mysqli_fetch_assoc($result_select_posts_home)){?>
+    <div  class="">
+        <div class="min_post_singl">
+        <center  class="min_post_single">
+    <h2><?php  echo  $row['title']; ?> </h2>
+
+    <img src="../img/<?php  echo  $row['img']; ?>" alt="img">
+    <p> <?php  echo  $row['content']; ?></p>
+    <h4 style="color:blue;">price:<?php echo $row['price']  ?></h4>
+
+    <!-- comments -->
+    <form action="" method="post" id="comment">
+    <h4>leave  Comments</h4>
+    <input type="text" name="username" placeholder="enter you name"><br>
+    <input type="email" name="user_email" placeholder="enter you email"><br>
+    
+    <textarea name="coment_user" id="" cols="30" rows="10"></textarea><br>
+    <input type="submit"  name="save_comment"  value=" save post" class="btn btn-info"  value="enter comment">
+    </form>
+</center>
+</div>
+</div>
+<?php  }?>
+    <!-- </div> -->
+
+</div>
+
+
+    <!-- js files -->
+   <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>
